@@ -177,7 +177,7 @@ const Video = () => {
       navigate("/signin");
     } else {
       await axiosInstance.put(
-        `/user/like/${currentVideo._id}/${userId}`
+        `/user/like/${currentVideo?._id}/${userId}`
       );
     }
     dispatch(like(currentUser._id));
@@ -188,7 +188,7 @@ const Video = () => {
       navigate("/signin");
     } else {
       await axiosInstance.put(
-        `/user/dislike/${currentVideo._id}/${userId}`
+        `/user/dislike/${currentVideo?._id}/${userId}`
       );
     }
     dispatch(dislike(currentUser._id));

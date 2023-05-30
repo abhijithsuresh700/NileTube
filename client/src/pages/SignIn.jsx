@@ -101,7 +101,7 @@ const SignIn = () => {
       setShouldResetFields(true);
       navigate("/");
     } catch (err) {
-      if (err.response.data.status === 400) {
+      if (err?.response?.data?.status === 400) {
         toast.error(err.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
