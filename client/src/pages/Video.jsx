@@ -165,9 +165,6 @@ const Video = () => {
         const channelRes = await axiosInstance.get(
           `/user/find/${videoRes.data.userId}`
         );
-        await axiosInstance.put(
-          `/user/addHistory/${currentVideo._id}/${userId}`
-        );
         setChannel(channelRes.data);
         dispatch(fetchSuccess(videoRes.data));
       } catch (err) {}
@@ -218,10 +215,10 @@ const Video = () => {
     } else {
       currentUser.savedVideos?.includes(currentVideo?._id)
         ? await axiosInstance.put(
-            `/user/unsaveVideo/${currentVideo._id}/${userId}`
+            `/user/unsaveVideo/${currentVideo?._id}/${userId}`
           )
         : await axiosInstance.put(
-            `/user/saveVideo/${currentVideo._id}/${userId}`
+            `/user/saveVideo/${currentVideo?._id}/${userId}`
           );
     }
     dispatch(savedVideo(currentVideo?._id));
@@ -238,12 +235,14 @@ const Video = () => {
   };
 
   useEffect(()=>{
-    const effect =async()=>{
-      await axiosInstance.put(
-        `/user/addHistory/${currentVideo._id}/${userId}`
-      ); 
-    }
-    effect();
+    if(userId !== undefined){
+      const effect =async()=>{
+        await axiosInstance.put(
+          `/user/addHistory/${currentVideo?._id}/${userId}`
+          ); 
+        }
+        effect();
+      }
 
   },[currentVideo])
 

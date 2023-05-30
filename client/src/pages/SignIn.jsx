@@ -89,8 +89,8 @@ const SignIn = () => {
     setPassword("");
     dispatch(loginStart());
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/auth/signin",
+      const res = await axiosInstance.post(
+        "/auth/signin",
         {
           name,
           password,
