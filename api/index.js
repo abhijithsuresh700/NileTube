@@ -37,6 +37,12 @@ app.use((err, req, res, next) => {
     });
   });
 
+  app.get('/', async (req, res) => {
+    res.status(200).send({
+      message: 'Hello from NileTube-Backend!'
+    })
+  })
+
 
 
 const connect = async()=>{
