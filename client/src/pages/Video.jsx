@@ -198,7 +198,7 @@ const Video = () => {
     if (!currentUser) {
       navigate("/signin");
     } else {
-      currentUser.subscribedUsers.includes(channel?._id)
+      currentUser?.subscribedUsers.includes(channel?._id)
         ? await axiosInstance.put(
             `/user/unsub/${channel?._id}/${currentUser?._id}`
           )
@@ -213,7 +213,7 @@ const Video = () => {
     if (!currentUser) {
       navigate("/signin");
     } else {
-      currentUser.savedVideos?.includes(currentVideo?._id)
+      currentUser?.savedVideos?.includes(currentVideo?._id)
         ? await axiosInstance.put(
             `/user/unsaveVideo/${currentVideo?._id}/${userId}`
           )
@@ -293,7 +293,7 @@ const Video = () => {
               <DropDown>
                 {moreHorizOpen ? (
                   <>
-                    {currentUser._id === channel._id ? (
+                    {currentUser?._id === channel._id ? (
                       <DropDownButton onClick={handleDelete}>
                         <DeleteIcon /> Delete
                         <ToastContainer />
