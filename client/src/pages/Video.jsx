@@ -163,10 +163,10 @@ const Video = () => {
           `/video/find/${path}`
         );
         const channelRes = await axiosInstance.get(
-          `/user/find/${videoRes.data.userId}`
+          `/user/find/${videoRes?.data.userId}`
         );
-        setChannel(channelRes.data);
-        dispatch(fetchSuccess(videoRes.data));
+        setChannel(channelRes?.data);
+        dispatch(fetchSuccess(videoRes?.data));
       } catch (err) {}
     };
     fetchData();
@@ -180,7 +180,7 @@ const Video = () => {
         `/user/like/${currentVideo?._id}/${userId}`
       );
     }
-    dispatch(like(currentUser._id));
+    dispatch(like(currentUser?._id));
   };
 
   const handleDislike = async () => {
@@ -191,19 +191,19 @@ const Video = () => {
         `/user/dislike/${currentVideo?._id}/${userId}`
       );
     }
-    dispatch(dislike(currentUser._id));
+    dispatch(dislike(currentUser?._id));
   };
 
   const handleSub = async () => {
     if (!currentUser) {
       navigate("/signin");
     } else {
-      currentUser.subscribedUsers.includes(channel._id)
+      currentUser.subscribedUsers.includes(channel?._id)
         ? await axiosInstance.put(
-            `/user/unsub/${channel._id}/${currentUser._id}`
+            `/user/unsub/${channel?._id}/${currentUser?._id}`
           )
         : await axiosInstance.put(
-            `/user/sub/${channel._id}/${currentUser._id}`
+            `/user/sub/${channel?._id}/${currentUser?._id}`
           );
     }
     dispatch(subscription(channel?._id));
@@ -264,7 +264,7 @@ const Video = () => {
               ) : (
                 <ThumbUpOutlinedIcon />
               )}{" "}
-              {currentVideo.likes?.length}
+              {currentVideo?.likes?.length}
             </Button>
             <Button onClick={handleDislike}>
               {currentVideo?.dislikes?.includes(currentUser?._id) ? (
